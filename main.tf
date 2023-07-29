@@ -9,3 +9,14 @@ module "vpc" {
   tags       = var.tags
   default_vpc_id = var.default_vpc_id
 }
+
+#module "app_server" {
+#  source = "git::https://github.com/vjsmit/tf-module-app.git"
+#  env        = var.env
+#  tags       = var.tags
+#  component  = test
+#}
+
+output "subnet_id" {
+  value = module.vpc
+}
