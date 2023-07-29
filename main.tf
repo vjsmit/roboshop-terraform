@@ -14,7 +14,7 @@ module "app_server" {
   source = "git::https://github.com/vjsmit/tf-module-app.git"
   env        = var.env
   tags       = var.tags
-  component  = "test-1"
+  component  = "test"
   subnet_id  = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets_id", null), "app", null), "subnet_ids", null)[0]
   vpc_id     = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
 }
