@@ -64,6 +64,7 @@ module "documentdb" {
   tags= var.tags
   env= var.env
   kms_key_arn = var.kms_key_arn
+  sg_subnets_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
 }
 
 #module "rds" {
