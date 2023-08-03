@@ -57,6 +57,7 @@ module "vpc" {
 
 module "documentdb" {
   source = "git::https://github.com/vjsmit/tf-module-documentdb.git"
+
   for_each = var.documentdb
   component = each.value["component"]
   subnet_ids = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets_id", null), "db", null), "subnet_ids", null)
