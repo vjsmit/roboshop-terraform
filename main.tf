@@ -11,15 +11,6 @@ module "vpc" {
   default_vpc_rt = var.default_vpc_rt
 }
 
-#module "app_server" {
-#  source = "git::https://github.com/vjsmit/tf-module-app.git"
-#  env        = var.env
-#  tags       = var.tags
-#  component  = "test"
-#  subnet_id  = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets_id", null), "app", null), "subnet_ids", null)[0]
-#  vpc_id     = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
-#}
-
 #module "rabbbitmq" {
 #  source = "git::https://github.com/vjsmit/tf-module-rabbitmq.git"
 #  for_each = var.rabbitmq
@@ -107,3 +98,35 @@ module "alb" {
   env = var.env
   tags = var.tags
 }
+
+module "apps" {
+  source = "git::https://github.com/vjsmit/tf-module-app.git"
+
+  for_each = var.apps
+  app_port = each.value["app_port"]
+  desired_capacity = each.value["desired_capacity"]
+  instance_type = each.value["instance_type"]
+  max_size = each.value["max_size"]
+  min_size = each.value["min_size"]
+  component  = each.value["component"]
+  sg_subnets_cidr = lookup(lookup(lookup(lookup(var.vpc, "main", null), "subnets", null), "app", null), "cidr_block", null)
+  subnets  = lookup(lookup(lookup(lookup(module.vpc, "main", null), "subnets_id", null), each.value["subnet_ref"], null), "subnet_ids", null)
+  vpc_id     = lookup(lookup(module.vpc, "main", null), "vpc_id", null)
+
+
+  env        = var.env
+  tags       = var.tags
+  kms_key_id = var.kms_key_arn.
+}
+
+
+#variable "subnet_id" {}
+#variable "vpc_id" {}
+#variable "app_port" {}
+#variable "sg_subnets_cidr" {}
+#variable "kms_key_id" {}
+#variable "instance_type" {}
+#variable "name" {}
+#variable "max_size" {}
+#variable "min_size" {}
+#variable "desired_capacity" {}
