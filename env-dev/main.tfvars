@@ -82,7 +82,7 @@ alb = {
   }
 }
 
-apps = {
+app = {
   cart = {
     component = "cart"
     app_port = 8080
@@ -92,5 +92,6 @@ apps = {
     min_size = 1
     subnet_ref = "app"
     lb_ref  = "private"
+    lb_rule_priority = 100
   }
 }
