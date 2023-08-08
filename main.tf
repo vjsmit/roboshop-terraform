@@ -11,7 +11,7 @@ module "vpc" {
   default_vpc_rt = var.default_vpc_rt
 }
 
-module "rabbbitmq" {
+module "rabbitmq" {
   source = "git::https://github.com/vjsmit/tf-module-rabbitmq.git"
   for_each = var.rabbitmq
   component = each.value["component"]
