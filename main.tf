@@ -13,6 +13,7 @@ module "vpc" {
 
 module "rabbitmq" {
   source = "git::https://github.com/vjsmit/tf-module-rabbitmq.git"
+
   for_each = var.rabbitmq
   component = each.value["component"]
   instance_type = each.value["instance_type"]
