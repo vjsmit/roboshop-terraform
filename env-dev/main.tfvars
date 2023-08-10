@@ -96,7 +96,7 @@ app = {
   }
 
   catalogue = {
-    component = "Catalogue"
+    component = "catalogue"
     app_port = 8080
     instance_type = "t3.small"
     desired_capacity = 1
@@ -143,7 +143,7 @@ app = {
     lb_rule_priority = 104
   }
 
-  Dispatch = {
+  dispatch = {
     component = "Dispatch"
     app_port = 8080
     instance_type = "t3.small"
