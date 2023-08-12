@@ -13,3 +13,4 @@ variable "documentdb" {}
 variable "elasticache" {}
 variable "alb" {}
 variable "app" {}
+variable "allow_prometheus_cidr" {}
