@@ -58,13 +58,13 @@ documentdb = {
 
 elasticache = {
   main = {
-    component    = "elasticache"
-    engine       = "redis"
-    engine_version = "6.x"
+    component               = "elasticache"
+    engine                  = "redis"
+    engine_version          = "6.x"
     replicas_per_node_group = 1
-    num_node_groups = 1
-    node_type       = "cache.t3.medium"
-    parameter_group_name       = "default.redis6.x.cluster.on"
+    num_node_groups         = 1
+    node_type               = "cache.t3.medium"
+    parameter_group_name    = "default.redis6.x.cluster.on"
   }
 }
 
@@ -125,7 +125,7 @@ app = {
   shipping = {
     component = "shipping"
     app_port = 8080
-    instance_type = "t3.small"
+    instance_type = "t3.medium"
     desired_capacity = 2
     max_size = 5
     min_size = 2
